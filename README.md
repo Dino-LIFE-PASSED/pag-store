@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PAG | Pro Audio Gadgets — Store
 
-## Getting Started
+Web app สำหรับลูกค้าตรวจสอบราคาและสต็อกสินค้า (Realtime)
 
-First, run the development server:
+## 🚀 วิธีเริ่มต้น
+
+### 1. ตั้งค่า Supabase
+
+1. ไปที่ [supabase.com](https://supabase.com) แล้วสร้าง Project ใหม่
+2. ไปที่ **SQL Editor** แล้ว copy + paste ทั้งหมดจากไฟล์ `supabase-setup.sql` แล้วกด **Run**
+3. ไปที่ **Project Settings > API** แล้วเอา URL และ anon key
+
+### 2. ตั้งค่า Environment Variables
+
+แก้ไฟล์ `.env.local`:
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
+```
+
+### 3. สร้าง Admin User ใน Supabase
+
+ไปที่ **Authentication > Users > Add User** แล้วสร้าง email/password สำหรับ admin
+
+### 4. รัน Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+เปิด [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📱 หน้าต่างๆ
 
-## Learn More
+| URL | คำอธิบาย |
+|-----|----------|
+| `/` | หน้าลูกค้า — ดูสินค้า ราคา และสต็อก Realtime |
+| `/admin` | Admin Panel — จัดการจำนวนสต็อก |
+| `/admin/login` | Login สำหรับ Admin |
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🟢 **Realtime Stock** — สต็อกอัปเดตทันทีเมื่อ Admin แก้ไข (ไม่ต้อง refresh)
+- 🔍 **Search & Filter** — ค้นหาสินค้าและกรองตามหมวดหมู่
+- 📊 **Stock Status** — แสดงสถานะ มีสินค้า / เหลือน้อย / หมด
+- 🔐 **Admin Auth** — ระบบ Login ด้วย Supabase Auth
+- ➕➖ **Stock Management** — กด + / - เพื่อเพิ่ม/ลดสต็อกได้ทันที
